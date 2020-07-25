@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "995273103289",
+    "firebase_url": "https://moapps-c03f9.firebaseio.com",
+    "project_id": "moapps-c03f9",
+    "storage_bucket": "moapps-c03f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995273103289:android:e2f2827a08069dd6244868",
+        "android_client_info": {
+          "package_name": "yuresko.moapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995273103289-0ld1tak4g6ub6bppp7dda7qmrjmjr9td.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClT6grzn3Xx5fL9QAh0fxSU7xobceAtpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995273103289-0ld1tak4g6ub6bppp7dda7qmrjmjr9td.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

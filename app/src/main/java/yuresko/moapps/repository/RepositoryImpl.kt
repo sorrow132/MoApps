@@ -4,17 +4,14 @@ import io.reactivex.Single
 import yuresko.moapps.core.AuthenticationResource
 import yuresko.moapps.core.UserApplicationResource
 import yuresko.moapps.network.ApiService
-import yuresko.moapps.network.model.LogResponse
-import yuresko.moapps.network.model.RawUserAppsModel
-import yuresko.moapps.network.model.RawUserInfoModel
-import yuresko.moapps.network.model.UserAppsResponse
+import yuresko.moapps.network.model.*
 
 interface IRepository {
 
     fun authentication(
         userName: String,
         password: String
-    ): Single<AuthenticationResource<LogResponse>>
+    ): Single<AuthenticationResource<LoginResponse>>
 
     fun getUserName(): String
 
@@ -31,11 +28,11 @@ class RepositoryImpl(private val apiService: ApiService) : IRepository {
     override fun authentication(
         userName: String,
         password: String
-    ): Single<AuthenticationResource<LogResponse>> {
+    ): Single<AuthenticationResource<LoginResponse>> {
         actualLog = userName
         return apiService
             .authentication(RawUserInfoModel(userNick = userName, password = password))
-            .map<AuthenticationResource<LogResponse>> {
+            .map<AuthenticationResource<LoginResponse>> {
                 AuthenticationResource.Data(it)
             }
             .onErrorReturn {

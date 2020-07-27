@@ -12,18 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".auth.Login"
+            android:name=".webview.WebViewActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".mainview.MainActivity"
-            android:label="@string/app_name"
+            android:name=".auth.Login"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".mainview.MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize">
+
         </activity>
     </application>
 

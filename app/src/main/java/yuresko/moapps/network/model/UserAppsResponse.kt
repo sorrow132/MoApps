@@ -3,11 +3,10 @@ package yuresko.moapps.network.model
 import com.google.gson.annotations.SerializedName
 
 data class UserAppsResponse(
-    val listOfApps: MutableList<UserAppInfo>
+    val data: MutableList<UserAppInfo>
 )
 
 data class UserAppInfo(
-
     val applicationToken: String,
 
     val isPayment: Boolean,
@@ -16,7 +15,7 @@ data class UserAppInfo(
 
     val applicationName: String,
 
-    val endOfPayment: String,
+    val endOfPayment: String?,
 
     val applicationIcoUrl: String,
 

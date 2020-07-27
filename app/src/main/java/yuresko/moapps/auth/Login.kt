@@ -25,6 +25,7 @@ class Login : BaseActivity() {
     private lateinit var singInButton: Button
     private lateinit var loginProgress: ProgressBar
     private lateinit var textProgress: TextView
+    private lateinit var infoDialog: TextView
 
     @Inject
     lateinit var repository: IRepository
@@ -41,6 +42,7 @@ class Login : BaseActivity() {
         singInButton = findViewById(R.id.btn_sing_in)
         loginProgress = findViewById(R.id.login_progressBar)
         textProgress = findViewById(R.id.login_progressBar_text)
+        infoDialog = findViewById(R.id.logInformation)
 
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -68,5 +70,13 @@ class Login : BaseActivity() {
         viewModel
             .error
             .observe(this, Observer(::displayError))
+
+        infoDialog.setOnClickListener {
+            val myDialogFragment = InformationDialog()
+            val manager = supportFragmentManager
+            myDialogFragment.show(manager, "myDialog")
+        }
+
+
     }
 }

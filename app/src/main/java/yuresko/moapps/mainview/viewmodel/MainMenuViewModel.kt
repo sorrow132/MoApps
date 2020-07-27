@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import yuresko.moapps.core.base.BaseViewModel
-import yuresko.moapps.mainview.model.MainMenuModel
+import yuresko.moapps.mainview.model.ItemModel
 import yuresko.moapps.mainview.model.MainMenuState
 import yuresko.moapps.repository.IRepository
 import yuresko.moapps.utils.addTo
@@ -29,12 +29,13 @@ class MainMenuViewModel(private val repository: IRepository) : BaseViewModel(), 
         repository
             .getUserApps()
             .map { list ->
-                list.listOfApps.map { entity ->
-                    MainMenuModel(
+                list.data.map { entity ->
+                    ItemModel(
                         entity.applicationUrl,
                         entity.applicationName,
                         entity.isPayment,
-                        entity.applicationStatus
+                        entity.applicationStatus,
+                        entity.applicationUrl
                     )
                 }
             }.subscribeOn(Schedulers.io())

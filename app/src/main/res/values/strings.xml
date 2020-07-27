@@ -11,4 +11,11 @@
     <string name="login_failed">"Login failed"</string>
     <string name="auth_textview_sign_in">Sing in with account</string>
     <string name="progress_please_wait">Please, wait</string>
+    <string name="main_textView_please_wait">Please, wait</string>
+    <string name="textView_Or">一 or 一</string>
+    <string name="login">E-mail</string>
+    <string name="password">Password</string>
+    <string name="sing_in">Sing in</string>
+    <string name="sing_in_with_social_account">Sing in with social account</string>
+    <string name="information">INFORMATION</string>
 </resources>

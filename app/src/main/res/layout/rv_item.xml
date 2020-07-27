@@ -6,21 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
+    android:background="@drawable/background"
     android:layout_marginEnd="4dp"
     cardView:cardCornerRadius="8dp"
     cardView:cardElevation="4dp"
-    cardView:cardUseCompatPadding="true">
+    cardView:cardUseCompatPadding="true"
+    tools:ignore="MissingDefaultResource">
 
     <LinearLayout
+        android:id="@+id/linearInCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#C6BEBE">
         <ImageView
             android:id="@+id/appIconItem"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/logo" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -29,6 +39,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textViewAppName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -50,8 +61,8 @@
                     android:id="@+id/paymentTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     tools:text="Not paid" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -69,11 +80,10 @@
                     android:id="@+id/redTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="incomplete" />
+                    android:layout_marginStart="8dp"
+                    tools:text="Incomplete" />
 
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

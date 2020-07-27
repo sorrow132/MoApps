@@ -54,7 +54,7 @@ class RepositoryImpl(private val apiService: ApiService) : IRepository {
                     skip = 0,
                     take = 1000,
                     osType = 0,
-                    userToken = getUserToken()
+                    userToken = "768be37d-67fd-03be-3218-564809b61095"
                 )
             )
     }

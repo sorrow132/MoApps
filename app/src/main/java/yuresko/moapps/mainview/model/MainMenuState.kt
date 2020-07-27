@@ -7,7 +7,7 @@ sealed class MainMenuState {
     object EmptyInfo : MainMenuState()
 
     data class LoadInfo(
-        val appsInfo: List<MainMenuModel>
+        val appsInfo: List<ItemModel>
     ) : MainMenuState()
 
     data class Error(

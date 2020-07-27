@@ -3,6 +3,7 @@ package yuresko.moapps.di.modules
 import dagger.Module
 import dagger.Provides
 import yuresko.moapps.network.ApiService
+import yuresko.moapps.network.model.LoginResponse
 import yuresko.moapps.repository.IRepository
 import yuresko.moapps.repository.RepositoryImpl
 import javax.inject.Singleton

@@ -7,6 +7,7 @@ import io.reactivex.schedulers.Schedulers
 import yuresko.moapps.core.base.BaseViewModel
 import yuresko.moapps.mainview.model.ItemModel
 import yuresko.moapps.mainview.model.MainMenuState
+import yuresko.moapps.network.model.LoginResponse
 import yuresko.moapps.repository.IRepository
 import yuresko.moapps.utils.addTo
 
@@ -14,20 +15,17 @@ interface IMainMenuViewModel {
 
     val state: LiveData<MainMenuState>
 
-    fun getAppsInfo()
+    fun getAppsInfo(userToken: String?)
 }
 
-class MainMenuViewModel(private val repository: IRepository) : BaseViewModel(), IMainMenuViewModel {
+class MainMenuViewModel(private val repository: IRepository) :
+    BaseViewModel(), IMainMenuViewModel {
 
     override val state: MutableLiveData<MainMenuState> = MutableLiveData()
 
-    init {
-        getAppsInfo()
-    }
-
-    override fun getAppsInfo() {
+    override fun getAppsInfo(userToken: String?) {
         repository
-            .getUserApps()
+            .getUserApps(userToken)
             .map { list ->
                 list.data.map { entity ->
                     ItemModel(

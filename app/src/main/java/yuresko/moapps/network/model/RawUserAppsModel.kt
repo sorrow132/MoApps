@@ -4,5 +4,5 @@ data class RawUserAppsModel(
     val skip: Int,
     val take: Int,
     val osType: Int,
-    val userToken: String
+    val userToken: String?
 )

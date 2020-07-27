@@ -2,9 +2,11 @@ package yuresko.moapps.repository
 
 import io.reactivex.Single
 import yuresko.moapps.core.AuthenticationResource
-import yuresko.moapps.core.UserApplicationResource
 import yuresko.moapps.network.ApiService
-import yuresko.moapps.network.model.*
+import yuresko.moapps.network.model.LoginResponse
+import yuresko.moapps.network.model.RawUserAppsModel
+import yuresko.moapps.network.model.RawUserInfoModel
+import yuresko.moapps.network.model.UserAppsResponse
 
 interface IRepository {
 
@@ -17,7 +19,7 @@ interface IRepository {
 
     fun getUserToken(): String
 
-    fun getUserApps(): Single<UserAppsResponse>
+    fun getUserApps(userToken: String?): Single<UserAppsResponse>
 }
 
 class RepositoryImpl(private val apiService: ApiService) : IRepository {
@@ -44,14 +46,15 @@ class RepositoryImpl(private val apiService: ApiService) : IRepository {
         return actualLog
     }
 
-    override fun getUserApps(): Single<UserAppsResponse> {
+    override fun getUserApps(userToken: String?): Single<UserAppsResponse> {
+
         return apiService
             .getApps(
                 RawUserAppsModel(
                     skip = 0,
                     take = 1000,
                     osType = 0,
-                    userToken = getUserToken()
+                    userToken = userToken
                 )
             )
     }

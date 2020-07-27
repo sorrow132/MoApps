@@ -9,9 +9,11 @@ class InformationDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
-                .setMessage("Предосмотр приложений, созданных с помощью конструктора MO APPS." +
-                        "Для входа введите логин и пароль от личного кабинета на сайте mo-apps.com")
-                .setPositiveButton("ОК") { dialog, id ->
+                .setMessage(
+                    "Предосмотр приложений, созданных с помощью конструктора MO APPS." +
+                            "Для входа введите логин и пароль от личного кабинета на сайте mo-apps.com"
+                )
+                .setPositiveButton("ОК") { dialog, _ ->
                     dialog.cancel()
                 }
             builder.create()

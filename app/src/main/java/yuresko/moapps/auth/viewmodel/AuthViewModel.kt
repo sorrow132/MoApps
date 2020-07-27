@@ -13,6 +13,8 @@ interface IAuthViewModel {
 
     val isLoading: LiveData<Boolean>
 
+    val isErrorResponse: LiveData<Boolean>
+
     val error: LiveData<Throwable>
 
     val openNextScreen: LiveData<String>
@@ -24,6 +26,8 @@ interface IAuthViewModel {
 class AuthViewModel(private val repository: IRepository) : BaseViewModel(), IAuthViewModel {
 
     override val isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    override val isErrorResponse: MutableLiveData<Boolean> = MutableLiveData(false)
 
     override val error: SingleLiveEvent<Throwable> = SingleLiveEvent()
 
@@ -41,8 +45,14 @@ class AuthViewModel(private val repository: IRepository) : BaseViewModel(), IAut
                         isLoading.postValue(true)
                     }
                     is AuthenticationResource.Data -> {
-                        isLoading.postValue(false)
-                        openNextScreen.postValue(repository.getUserName())
+                        if (!resource.data.data.isNullOrEmpty()) {
+                            isErrorResponse.postValue(false)
+                            isLoading.postValue(false)
+                            openNextScreen.postValue(repository.getUserName())
+                        } else {
+                            isErrorResponse.postValue(true)
+                            isLoading.postValue(false)
+                        }
                     }
                     is AuthenticationResource.Error -> {
                         isLoading.postValue(false)

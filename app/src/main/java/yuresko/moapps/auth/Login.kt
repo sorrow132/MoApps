@@ -2,10 +2,7 @@ package yuresko.moapps.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -63,20 +60,25 @@ class Login : BaseActivity() {
         viewModel
             .openNextScreen
             .observe(this, Observer { _ ->
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                viewModel.isErrorResponse.observe(this, Observer {
+                    if (it) {
+                        Toast.makeText(this, "Invalid login or password", Toast.LENGTH_SHORT).show()
+                    } else {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                })
+
             })
 
         viewModel
             .error
-            .observe(this, Observer(::displayError))
+            .observe(this, Observer(::displayHostError))
 
         infoDialog.setOnClickListener {
             val myDialogFragment = InformationDialog()
             val manager = supportFragmentManager
             myDialogFragment.show(manager, "myDialog")
         }
-
-
     }
 }

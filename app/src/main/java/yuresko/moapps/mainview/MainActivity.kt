@@ -1,6 +1,5 @@
 package yuresko.moapps.mainview
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -16,6 +15,7 @@ import yuresko.moapps.core.base.BaseActivity
 import yuresko.moapps.mainview.model.MainMenuState
 import yuresko.moapps.mainview.viewmodel.IMainMenuViewModel
 import yuresko.moapps.mainview.viewmodel.MainMenuViewModel
+import yuresko.moapps.network.SharedPrefManager
 import yuresko.moapps.repository.IRepository
 import yuresko.moapps.utils.visibleOrGone
 import javax.inject.Inject
@@ -24,13 +24,10 @@ class MainActivity : BaseActivity() {
     private lateinit var recycler: RecyclerView
     private val adapter = MenuListAdapter(this)
 
-    private lateinit var sharedPrefs: SharedPreferences
-
     private lateinit var viewModel: IMainMenuViewModel
 
     @Inject
     lateinit var repository: IRepository
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MoAppsApplication).component.inject(this)
@@ -49,7 +46,9 @@ class MainActivity : BaseActivity() {
         recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        observeLiveData()
+        val sharedPrefs = SharedPrefManager(this)
+
+        viewModel.getAppsInfo(sharedPrefs.loadData())
 
     }
 

@@ -25,13 +25,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_progressBar"
+        android:layout_marginTop="366dp"
         android:text="@string/progress_please_wait"
         android:textColor="#ffffff"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/login_progressBar"
         app:layout_constraintEnd_toEndOf="@+id/login_progressBar"
         app:layout_constraintStart_toStartOf="@+id/login_progressBar"
-        app:layout_constraintTop_toBottomOf="@+id/login_progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"

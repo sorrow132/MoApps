@@ -46,9 +46,9 @@ class MainActivity : BaseActivity() {
         recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        val sharedPrefs = SharedPrefManager(this)
-
-        viewModel.getAppsInfo(sharedPrefs.loadData())
+//        val sharedPrefs = SharedPrefManager(this)
+//
+//        viewModel.getAppsInfo(sharedPrefs.loadData())
 
     }
 

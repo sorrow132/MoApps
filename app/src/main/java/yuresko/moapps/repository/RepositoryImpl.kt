@@ -50,7 +50,6 @@ class RepositoryImpl(private val apiService: ApiService) : IRepository {
     }
 
     override fun getUserApps(userToken: String): Single<UserAppsResponse> {
-
         return apiService
             .getApps(
                 RawUserAppsModel(

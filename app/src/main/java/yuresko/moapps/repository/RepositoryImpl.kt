@@ -19,7 +19,7 @@ interface IRepository {
 
     fun getUserToken(): String
 
-    fun getUserApps(userToken: String?): Single<UserAppsResponse>
+    fun getUserApps(userToken: String): Single<UserAppsResponse>
 }
 
 class RepositoryImpl(private val apiService: ApiService) : IRepository {
@@ -32,10 +32,13 @@ class RepositoryImpl(private val apiService: ApiService) : IRepository {
         password: String
     ): Single<AuthenticationResource<LoginResponse>> {
         actualLog = userName
+
         return apiService
             .authentication(RawUserInfoModel(userNick = userName, password = password))
             .map<AuthenticationResource<LoginResponse>> {
+                actualToken = it.data
                 AuthenticationResource.Data(it)
+
             }
             .onErrorReturn {
                 AuthenticationResource.Error(it)
@@ -46,7 +49,7 @@ class RepositoryImpl(private val apiService: ApiService) : IRepository {
         return actualLog
     }
 
-    override fun getUserApps(userToken: String?): Single<UserAppsResponse> {
+    override fun getUserApps(userToken: String): Single<UserAppsResponse> {
 
         return apiService
             .getApps(

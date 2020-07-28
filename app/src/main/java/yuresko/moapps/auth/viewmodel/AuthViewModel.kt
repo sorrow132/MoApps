@@ -43,9 +43,10 @@ class AuthViewModel(private val repository: IRepository) : BaseViewModel(), IAut
                 when (resource) {
                     is AuthenticationResource.Loading -> {
                         isLoading.postValue(true)
+                        isErrorResponse.postValue(false)
                     }
                     is AuthenticationResource.Data -> {
-                        if (!resource.data.data.isNullOrEmpty()) {
+                        if (resource.data.data.isNotEmpty()) {
                             isErrorResponse.postValue(false)
                             isLoading.postValue(false)
                             openNextScreen.postValue(repository.getUserName())
@@ -57,9 +58,11 @@ class AuthViewModel(private val repository: IRepository) : BaseViewModel(), IAut
                     is AuthenticationResource.Error -> {
                         isLoading.postValue(false)
                         error.postValue(resource.error)
+                        isErrorResponse.postValue(false)
                     }
                 }
             }
             .addTo(compositeDisposable)
+        isErrorResponse.postValue(true)
     }
 }

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.view.View
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import yuresko.moapps.repository.IRepository
 
 fun Disposable.addTo(compositeDisposable: CompositeDisposable) {
     compositeDisposable.add(this)
@@ -17,6 +18,6 @@ fun View.visibleOrGone(isVisible: Boolean) {
     }
 }
 
-fun getUserToken(sharedPreferences: SharedPreferences): String {
-    return sharedPreferences.getString("user_token", "0").toString()
+fun getUserToken(sharedPreferences: SharedPreferences, repository: IRepository): String {
+    return sharedPreferences.getString("user_token", repository.getUserToken()).toString()
 }

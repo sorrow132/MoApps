@@ -1,11 +1,13 @@
 package yuresko.moapps.core.base
 
+import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.lang.IllegalArgumentException
 import java.net.UnknownHostException
 
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
+    lateinit var sharedPreferences: SharedPreferences
 
     protected fun displayHostError(throwable: Throwable) {
         when (throwable) {

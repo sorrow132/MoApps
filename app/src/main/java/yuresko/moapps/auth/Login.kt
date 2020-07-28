@@ -6,7 +6,7 @@ import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import yuresko.moapps.MoAppsApplication
+import yuresko.moapps.App
 import yuresko.moapps.R
 import yuresko.moapps.auth.viewmodel.AuthViewModel
 import yuresko.moapps.auth.viewmodel.IAuthViewModel
@@ -30,7 +30,7 @@ class Login : BaseActivity() {
     private lateinit var viewModel: IAuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MoAppsApplication).component.inject(this)
+        (application as App).component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
@@ -40,6 +40,7 @@ class Login : BaseActivity() {
         loginProgress = findViewById(R.id.login_progressBar)
         textProgress = findViewById(R.id.login_progressBar_text)
         infoDialog = findViewById(R.id.logInformation)
+
 
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -60,15 +61,15 @@ class Login : BaseActivity() {
         viewModel
             .openNextScreen
             .observe(this, Observer { _ ->
-                viewModel.isErrorResponse.observe(this, Observer {
-                    if (it) {
+                viewModel.isErrorResponse.observe(this, Observer { wrongInput ->
+                    if (wrongInput) {
                         Toast.makeText(this, "Invalid login or password", Toast.LENGTH_SHORT).show()
                     } else {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+
                     }
                 })
-
             })
 
         viewModel
@@ -80,5 +81,9 @@ class Login : BaseActivity() {
             val manager = supportFragmentManager
             myDialogFragment.show(manager, "myDialog")
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

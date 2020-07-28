@@ -2,6 +2,7 @@ package yuresko.moapps.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -10,7 +11,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import yuresko.moapps.R
 import yuresko.moapps.mainview.model.ItemModel
-import yuresko.moapps.webview.WebViewActivity
 
 class CustomViewHolder(parent: ViewGroup, private val context: Context) :
     RecyclerView.ViewHolder(
@@ -26,24 +26,19 @@ class CustomViewHolder(parent: ViewGroup, private val context: Context) :
     private val selectedItem: LinearLayout = itemView.findViewById(R.id.linearInCardView)
 
     fun bind(itemModel: ItemModel) {
+
 //        Picasso.get()
 //            .load(itemModel.image)
 //            .into(image)
+
         appName?.text = itemModel.appName
         payStatus?.text = itemModel.isPaid.toString()
         redTv?.text = itemModel.incomplete.toString()
 
         selectedItem.setOnClickListener {
-            val intent = Intent(context, WebViewActivity::class.java)
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(itemModel.appLink)
             context.startActivity(intent)
-
-//            webView!!.settings.javaScriptEnabled = true
-//
-//
-//            webView!!.webViewClient = WebViewClient()
-//            webView!!.webChromeClient = WebChromeClient()
-//            webView!!.loadUrl(itemModel.appLink)
-
         }
     }
 }

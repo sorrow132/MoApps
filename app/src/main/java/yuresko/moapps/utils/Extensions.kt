@@ -18,6 +18,10 @@ fun View.visibleOrGone(isVisible: Boolean) {
     }
 }
 
+fun getViewHolderLinks(url: String): String {
+    return url
+}
+
 fun getUserToken(sharedPreferences: SharedPreferences, repository: IRepository): String {
     return sharedPreferences.getString("user_token", repository.getUserToken()).toString()
 }
